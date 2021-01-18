@@ -1,0 +1,14 @@
+welcome: Welcome nooba
+greeting: |
+  Hey Champions Thanks for Adding me to your group, I am Memnon the Mythical King of Aethiopia 🤴. I can help you play a Werewolf Event by picking Champion roles which I give stars if they win for me.  
+  use /help if you want to know how to earn my good graces.
+leave: |
+  Hey Champions Thanks for Adding me to your group but sadly😞 I can't be used unless my developer permits it. use /dev to contact my developers
+pong: |
+  At Ease Player 🖐 responding at <code>${time}ms</code>
+help: >
+  I am Memnon: the Mythical King of the Ethiopians and the hero of the Trojan war
+add_to_group: Add to Group
+redirect:
+  helpMsg: Come in private so I can groom you to be my champion
+  helpBtnMsg: Go to Help
