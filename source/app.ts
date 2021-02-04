@@ -84,7 +84,9 @@ bot.command('champstat', (ctx) => commands.checkStar(ctx));
 bot.command('nominate_champ', onlyManager, (ctx) =>
   commands.nominateChampion(ctx)
 );
-bot.command('gain_favours', needsReply, (ctx) => commands.gainFavour(ctx));
+bot.command('gain_favours', onlyGroup, onlyManager, needsReply, (ctx) =>
+  commands.gainFavour(ctx)
+);
 
 // Dev
 bot.command('dev', (ctx) => commands.contactDev(ctx));

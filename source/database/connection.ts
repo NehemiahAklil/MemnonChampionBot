@@ -8,5 +8,5 @@ const dbConfigs = {
   useFindAndModify: false,
   useCreateIndex: true,
 };
-
+console.log('Trying to connect to mongo url', mongoUrl);
 export default mongoose.connect(mongoUrl, dbConfigs);
