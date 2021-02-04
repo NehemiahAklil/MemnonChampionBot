@@ -145,12 +145,10 @@ connection.once('open', async () => {
       console.log(new Date(), 'Bot started as', bot.botInfo?.first_name);
       return '';
     }
-    const PORT: number = parseInt(<string>process.env.PORT) || 3000;
     await bot.launch({
       webhook: {
-        hookPath: `${BOT_DOMAIN}/bot${TOKEN}`,
         domain: BOT_DOMAIN,
-        port: PORT,
+        port: Number(process.env.PORT),
       },
     });
     console.log(new Date(), bot.botInfo?.first_name, ' Bot Started on Webhook');
