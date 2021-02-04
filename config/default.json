@@ -2,6 +2,7 @@
   "botToken": "BOT_TOKEN",
   "botDomain": "BOT_DOMAIN",
   "devId": "DEV_ID",
+  "chats": "CHATS",
   "SupportGroup": "SUPPORT_GROUP",
   "LogChannel": "LOG_CHANNEL_HANDLER",
   "blackWWStatsBotId": "BLACK_WW_STATS_BOT_ID",
