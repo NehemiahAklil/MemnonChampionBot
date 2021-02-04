@@ -1,4 +1,4 @@
-welcome: Welcome nooba
+welcome: Welcome Champion, Hope You Can gain my favour
 greeting: |
   Hey Champions Thanks for Adding me to your group, I am Memnon the Mythical King of Aethiopia 🤴. I can help you play a Werewolf Event by picking Champion roles which I give stars if they win for me.  
   use /help if you want to know how to earn my good graces.
@@ -6,9 +6,132 @@ leave: |
   Hey Champions Thanks for Adding me to your group but sadly😞 I can't be used unless my developer permits it. use /dev to contact my developers
 pong: |
   At Ease Player 🖐 responding at <code>${time}ms</code>
-help: >
+help: |
+  Hello, my name is Memnon the Mythical King. 
+  I am here to make your boring ww games more fun.
+  What I basically do is pick a certain group of roles with some similarities and nominate them as my champion roles for the game. 
+  If the nominated champion roles win, I will give them each 4 stars and an additional one star for champions who make it out alive. 
+  I will also reward 3 stars to any ally that wins with them
+  But if the nominated champion roles lose, I will give a point each, to the roles that won.
+
+  <b>General commands</b>
+    /nominate_champ - I will give your a random champ roles for the games
+    /curr_nominee - I will show the currently selected champ roles, incase you have forgotten
+    /tpchamps - I will send the list of champions in the gc, according to their star ranks
+    /champstat - I will send your current champion stats in the gc
+
+  <b>Admin only commands</b>
+    /gain_favours - Reply to the game end message and I will give stars according to the selected champ roles for the game
+    /addstr &lt;args&gt;- I will add stars to the users champ stats
+    /rmstr &lt;args&gt;- I will remove stars from the users champ stats
+
+  P.S arguments need to be a number less than 5, or I will just ignore you and add 5 stars. 
+  If you send it without arguments it will be 3 stars
+old_help: |
   I am Memnon: the Mythical King of the Ethiopians and the hero of the Trojan war
+  Use my commands:
+  /add_stars - to nominate stars for champions
+  /remove_stars -  to remove stars form champions
 add_to_group: Add to Group
+only_group: |
+  This command can be executed only in groups.
+only_admin: |
+  This command can be executed only by a group administrator.
+only_mod: |
+  This command can be executed only by my moderators.
+only_owner: |
+  This command can be executed only by my owner.
+give_bot_pin_access: |
+  You can't use this command unless I am given pin access🙃
+make_bot_admin: |
+  You must make me an admin to use this command😓
+needs_reply: |
+  You need to reply to a message for this command to work
+numeric_char_only: |
+  This Command accepts only Numeric Characters as its argument 
+  for e.g <code>/command 6</code> not <code>/command six</code>
 redirect:
   helpMsg: Come in private so I can groom you to be my champion
   helpBtnMsg: Go to Help
+champion:
+  no_star: |
+    This Champion hasn't earned any stars in this group
+  not_found: |
+    This Person isn't Currently My Champion
+  first_merit: |
+    New Champion ${mention} was just reward with <b>${starPoint}🌟</b>
+  merit: |
+    Champion ${mention} has earned the merit of the King and so has been rewarded with <b>${rewardStars} ✨</b> and now has a total of <b>${totalStars} 💫</b>
+  lost_merit: |
+    Champion ${mention} has lost the merit of the King and so has lost <b>${rewardStars} ✨</b> and now has a total of <b>${totalStars} 💫</b>
+  rank: |
+    <b>${name}</b> the Champion 
+    <code>${currStars}</code>   Merits earned ✨️
+    <code>${totalStars}</code>   Total collected 💫
+candidate:
+  nominate: |
+    I have chosen ${candidate} as my candidate champions for this game. If they are to win this game I shall give them and their allies merit of which they have yet to to experience.
+
+    <i>${candidate} Includes</i>  
+    ${roles}
+  nominate_from: |
+    From ${candidCount} Possible candidate roles
+  not_nominated: |
+    I don't seem to have Nominated a Champion Role yet use /nominate_champ for me to Pick My Champion Role
+  not_found: |
+    I Can't seem to understand the nominatted champs for the life of me contact my developer using /dev now
+game_msg:
+  wrong_message: |
+    The message you replied to isn't a normal werewolf game end message
+  champ_absent: |
+    The Nominated Champion Roles Weren't In this game
+gain_merit:
+  merit_title: |
+    Game Merits Rewarded to Champions
+  alive_champ: |
+    Champion ${mention} the ${role} ${emoji} - ${status} <code>+${stars}</code> stars and <code>+1</code> star for being ${survival}\n
+  dead_champ: |
+    Champion ${mention} the ${role} ${emoji} - ${status} <code>+${stars}</code> stars
+  ally: |
+    Ally ${mention} the ${role} ${emoji} - ${status} <code>+${stars}</code> stars
+  champ_enemy: |
+    Champion Enemy ${mention} the ${role} ${emoji} - ${status} <code>+${stars}</code> star for defeating nominee champion role
+moderator:
+  list_owner:
+    title: |
+      <b>My Maester Developer</b>
+
+    mention: ' ⚜️ ${mention} the ${title}'
+  list_mod:
+    title: "\n\n<b>My Moderators</b>\n"
+    mention: ' ⚜️ ${mention} the ${title}'
+    no_mods: |
+      <i>There aren't any ${type} moderators at the time being</i>
+  global:
+    list_title: |
+      The List of My Global Moderators
+    already_mod: |
+      ${firstName} is already a global moderator
+    is_mod: |
+      ${firstName} is a global moderator
+    not_mod: ${firstName} is not a global moderator
+    new_mod: |
+      ${mention} is my new Rookie Moderator💂‍♂️, this ${title} better be worth it😅
+    rm_mod: |
+      ${mention} is my no longer my Moderator💂‍♂️, I guess ${title} wasn't worth it after all, ciao👋
+  chat:
+    list_title: |
+      The List of Chat Moderators
+    already_mod: |
+      ${firstName} is already a moderator of this groups
+    is_mod: |
+      ${firstName} is a moderator of this groups
+    is_not_mod: |
+      ${firstName} is not a moderator of this groups
+    not_mod: ${firstName} is not a moderator in this chat
+    new_mod: |
+      Welcome ${mention}(${title}), your my new Rookie Moderator for this chat,
+    rm_mod: |
+      ${mention} has left the Moderators staff💂‍♂️ of this group ciao👋
+
+dev: Thanks for using Memnon Contact My Developer :- <a href="tg://user?id="528744128">βoγ Woηdεr</a>

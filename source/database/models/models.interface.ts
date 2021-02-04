@@ -1,7 +1,9 @@
 import { Document } from 'mongoose';
+import { Star } from './star.class';
 export enum roleType {
   al = 'Auto-Lose',
   vlg = 'Villager',
+  chg = 'Shifting',
   ww = 'Wolf and Allie',
   ally = 'Allied Enemy',
   cult = 'Cultist',
@@ -12,29 +14,36 @@ export interface IRole extends Document {
   type: roleType;
   emoji: string;
 }
-export interface IModerator {
+export interface Moderator {
   name: string;
   telegramId: number;
-  title: string;
-  isOwner: boolean;
+  chatIds?: number[];
+  title?: string;
+  isOwner?: boolean;
+  isGlobal?: boolean;
 }
+export interface IModerator extends Moderator, Document {}
 export interface CandRoles {
   name: string;
   candidates: IRole['_id'][];
   winningType: roleType[];
 }
-export interface ICandidateRoles extends Document {
-  name: string;
-  candidates: IRole['_id'][];
-  winningType: roleType[];
-}
-export interface IChat extends Document {
+export interface ICandidateRoles extends Document, CandRoles {}
+export type noncandidates = {
+  nominee: ICandidateRoles['name'];
+  interval: number;
+};
+
+export interface Chat {
   chatId: number;
   currCandidate: ICandidateRoles['_id'];
-  lastCandidates: ICandidateRoles['_id'][];
+  lastCandidates: (noncandidates | null)[];
 }
-export interface IChampion extends Document {
+export interface IChat extends Document, Chat {}
+export interface Champion {
   name: string;
+  username?: string;
   telegramId: number;
-  points: number;
+  stars: Star[];
 }
+export interface IChampion extends Document, Champion {}

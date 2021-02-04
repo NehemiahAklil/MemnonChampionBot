@@ -17,7 +17,8 @@
     "telegraf": "^4.0.1",
     "telegraf-i18n": "^6.6.0",
     "telegraf-inline-menu": "^5.3.0",
-    "telegram-format": "^2.0.1"
+    "telegram-format": "^2.0.1",
+    "typegram": "^3.1.6"
   },
   "devDependencies": {
     "@types/config": "^0.0.38",

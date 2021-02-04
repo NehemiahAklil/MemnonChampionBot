@@ -20,6 +20,7 @@ export default async (db: typeof database) => {
         telegramId: <number>devId,
         title: 'Enthusiast Coder',
         isOwner: true,
+        isGlobal: true,
       }
     );
     if (hasOwner) {
@@ -40,6 +41,7 @@ export default async (db: typeof database) => {
       console.log('Bot Already has all the roles');
     }
 
+    // await db.CandidateRoles.deleteMany();
     // Create CandidateRoles
     if (candRoleCount !== candidateRoles.length) {
       // Remove Everthing inside candidate roels first

@@ -7,7 +7,11 @@ export default async (ctx: MyContext, next: () => Promise<void>) => {
       const Mods = await ctx.db?.Moderator.findOne({
         telegramId: chatMember.user.id,
       });
-      console.log(Mods);
+      if (Mods) {
+        ctx.state.isMod = true;
+      } else {
+        ctx.state.isMod = false;
+      }
       if (
         (chatMember &&
           ['creator', 'administrator'].includes(chatMember.status)) ||

@@ -21,4 +21,4 @@ const roleSchema: Schema = new Schema({
   },
 });
 
-export default model<IRole>('roles', roleSchema);
+export default model<IRole>('Roles', roleSchema);

@@ -158,6 +158,7 @@ export const roles = [
   },
   {
     name: 'Martyr',
+    type: roleType.chg,
     emoji: '🔰',
   },
   {

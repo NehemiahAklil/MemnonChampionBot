@@ -62,7 +62,7 @@ export const help = async (ctx: MyContext) => {
   }
 };
 
-export const ping = async (ctx: MyContext) => {
+export const salute = async (ctx: MyContext) => {
   try {
     const time = process.hrtime(ctx.state.start)[1];
     const pongTime = (time / 1000).toFixed(0);
@@ -80,12 +80,14 @@ export const ping = async (ctx: MyContext) => {
 export const greeting = async (ctx: MyContext) => {
   try {
     if (ctx.message && 'new_chat_members' in ctx.message) {
-      if (ctx.message?.new_chat_members.some((e) => e.id === ctx.botInfo?.id))
-        if (!chats.includes(<number>ctx.chat?.id)) {
-          await ctx.reply(<string>ctx.i18n?.t('leave'));
-          return ctx.leaveChat();
-        }
-      return ctx.reply(<string>ctx.i18n?.t('greeting'));
+      console.log(ctx.message?.new_chat_members);
+      if (!chats.includes(<number>ctx.chat?.id)) {
+        await ctx.reply(<string>ctx.i18n?.t('leave'));
+        return ctx.leaveChat();
+      }
+      if (ctx.message?.new_chat_members.some((e) => e.id === ctx.botInfo?.id)) {
+        return ctx.reply(<string>ctx.i18n?.t('greeting'));
+      }
     }
     return;
   } catch (err) {

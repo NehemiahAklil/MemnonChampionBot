@@ -13,17 +13,18 @@ export const candidateRoles: CandRoles[] = [
       'Speed Wolf',
       'Trickster',
       'Wolf Cub',
+      'Lycan',
     ],
     winningType: [roleType.ww],
   },
   {
     name: 'saving roles',
     candidates: ['Guardian Angel', 'Martyr', 'Fire Fighter', 'Guard'],
-    winningType: [roleType.vlg],
+    winningType: [roleType.vlg, roleType.ww],
   },
   {
     name: 'revealing roles',
-    candidates: ['Blacksmith', 'Storm Bringer', 'Sandman', 'Monarch'],
+    candidates: ['Blacksmith', 'Storm Bringer', 'Sandman', 'Monarch', 'Mayor'],
     winningType: [roleType.vlg],
   },
   {

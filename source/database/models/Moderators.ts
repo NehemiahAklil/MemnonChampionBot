@@ -1,5 +1,5 @@
-import { IModerator } from './models.interface';
-import { model, Schema, Model, Document } from 'mongoose';
+import { IModerator, Moderator } from './models.interface';
+import { model, Schema, Model } from 'mongoose';
 import findOneOrCreate from 'mongoose-findoneorcreate';
 
 const moderatorSchema: Schema = new Schema(
@@ -14,21 +14,24 @@ const moderatorSchema: Schema = new Schema(
       unique: true,
       required: true,
     },
+    chatIds: {
+      type: [Number],
+    },
     title: {
       type: String,
       trim: true,
       default: 'moderator',
     },
     isOwner: { type: Boolean, default: false },
+    isGlobal: { type: Boolean, default: false },
   },
-  { collection: 'moderators', timestamps: true }
+  { collection: 'Moderators', timestamps: true }
 );
 
-export interface Moderator extends IModerator, Document {}
-export interface ModeratorModel extends Model<Moderator> {
-  findOneOrCreate(find: object, create: IModerator): Promise<Moderator>;
+interface ModeratorModel extends Model<IModerator> {
+  findOneOrCreate(find: object, create: Moderator): Promise<IModerator>;
 }
 
 moderatorSchema.plugin(findOneOrCreate);
 
-export default model<Moderator, ModeratorModel>('moderators', moderatorSchema);
+export default model<IModerator, ModeratorModel>('Moderators', moderatorSchema);
