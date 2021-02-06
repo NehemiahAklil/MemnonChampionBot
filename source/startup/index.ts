@@ -8,7 +8,7 @@ import { Document } from 'mongoose';
 export default async (db: typeof database) => {
   try {
     const roleCount = await db.Role.countDocuments();
-    const candRoleCount = (await db.CandidateRoles.countDocuments()) - 1;
+    const candRoleCount = await db.CandidateRoles.countDocuments();
 
     // Create Owner for bot
     const hasOwner = await db.Moderator.findOneOrCreate(
