@@ -13,11 +13,9 @@ const candidateRolesSchema: Schema = new Schema({
     ref: 'Roles',
     required: true,
   },
-  winningType: {
-    type: [String],
-    enum: [...Object.values(roleType)],
+  description: {
+    type: String,
     trim: true,
-    ref: 'Roles',
   },
 });
 

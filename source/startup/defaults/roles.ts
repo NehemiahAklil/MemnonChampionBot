@@ -67,7 +67,7 @@ export const roles = [
     emoji: '👤',
   },
   {
-    name: 'Cupid ',
+    name: 'Cupid',
     emoji: '🏹',
   },
   {

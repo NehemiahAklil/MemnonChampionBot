@@ -23,7 +23,7 @@ export const nominateChampion = async (ctx: MyContext) => {
   const { nonCandidates, nominee } = randomNominee(
     lastOfCand,
     candidateRoles,
-    4
+    candidateRoles.length - 3
   );
   await ctx.db?.Chat.findOneAndUpdate(
     { chatId: ctx.chat?.id },
@@ -171,9 +171,27 @@ export const getNominee = async (ctx: MyContext) => {
   console.log(chat);
   if (!chat && !chat.currCandidate)
     return ctx.reply('No Nominee Champion roles selected');
-  const nominee = await ctx.db?.CandidateRoles.findById(chat.currCandidate);
+  const nominee: ICandidateRoles = await ctx.db?.CandidateRoles.findById(
+    chat.currCandidate
+  );
+  if (!nominee || !nominee.candidates) {
+    return ctx.reply(<string>ctx.i18n?.t('candidate.not_nominated'));
+  }
+  let candidRoles: any[] = [];
+
+  nominee.candidates.forEach((candidate) =>
+    candidRoles.push(ctx.db?.Role.findById(candidate))
+  );
+
+  candidRoles = await Promise.all(candidRoles);
+  console.log(candidRoles);
+  candidRoles = candidRoles.map((candid) => `${candid.name} ${candid.emoji}`);
   console.log(nominee);
   ctx.replyWithHTML(
-    `Nominee Champion role selected is <i>${capitalize(nominee.name)}</i>`
+    <string>ctx.i18n?.t('candidate.current_nominee', {
+      nominee: html.bold(capitalize(nominee.name)),
+      roleCount: html.bold(candidRoles.length.toString()),
+      roles: html.italic(candidRoles.join(', ')),
+    })
   );
 };

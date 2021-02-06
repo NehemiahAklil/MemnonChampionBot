@@ -8,7 +8,7 @@ import { Document } from 'mongoose';
 export default async (db: typeof database) => {
   try {
     const roleCount = await db.Role.countDocuments();
-    const candRoleCount = await db.CandidateRoles.countDocuments();
+    const candRoleCount = (await db.CandidateRoles.countDocuments()) - 1;
 
     // Create Owner for bot
     const hasOwner = await db.Moderator.findOneOrCreate(
@@ -58,10 +58,10 @@ export default async (db: typeof database) => {
         );
         promise = [];
         // Save the current's candidate role data to db
-        const { name, winningType } = candidateRoles[i];
+        const { name, description } = candidateRoles[i];
         await db.CandidateRoles.create({
           name,
-          winningType,
+          description,
           // Change _id from being properties of objects inside candidates array to array vaules
           candidates: candidates.map((candidate) => candidate._id),
         });

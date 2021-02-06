@@ -26,7 +26,7 @@ export interface IModerator extends Moderator, Document {}
 export interface CandRoles {
   name: string;
   candidates: IRole['_id'][];
-  winningType: roleType[];
+  description: string;
 }
 export interface ICandidateRoles extends Document, CandRoles {}
 export type noncandidates = {

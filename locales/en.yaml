@@ -74,6 +74,9 @@ candidate:
 
     <i>${candidate} Includes</i>  
     ${roles}
+  current_nominee: |
+    Nominee Champion Roles selected are the ${roleCount} ${nominee}:-  
+    ${roles}
   nominate_from: |
     From ${candidCount} Possible candidate roles
   not_nominated: |
