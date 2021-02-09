@@ -176,38 +176,57 @@ export const removeStar = async (ctx: MyContext) => {
     console.log(err);
   }
 };
-export const topGroupChampions = async (ctx: MyContext) => {
+export const topGroupChampions = async (ctx: MyContext, isTopOnly = false) => {
   try {
-    let totalChamps = await ctx.db?.Champion.find({
-      'stars.groupId': ctx.chat?.id,
-    })
-      .sort({ 'stars.stars': -1 })
-      .limit(10);
+    let totalChamps;
+    if (isTopOnly) {
+      totalChamps = await ctx.db?.Champion.find({
+        'stars.groupId': ctx.chat?.id,
+      })
+        .sort({ 'stars.stars': -1 })
+        .limit(10);
+    } else {
+      totalChamps = await ctx.db?.Champion.find({
+        'stars.groupId': ctx.chat?.id,
+      }).sort({ 'stars.stars': -1 });
+    }
+
     console.log(totalChamps);
     totalChamps = totalChamps.map((champ: IChampion) => {
       const { name, telegramId } = champ;
       const Stars = champ.stars.find(
         (star: Star) => star.groupId === ctx.chat?.id
       );
-      return { name, telegramId, stars: [Stars] };
+      return { name, telegramId, stars: Stars?.stars };
     });
-    totalChamps = totalChamps.sort(
-      (a: IChampion, b: IChampion) => b.stars[0].stars - a.stars[0].stars
-    );
+    totalChamps = totalChamps.sort((a: any, b: any) => b.stars - a.stars);
+    let ranks = [];
+    for (let i = 0; i < totalChamps.length; i++) {
+      if (i == 0) {
+        ranks[i] = { ...totalChamps[i], rank: i + 1 };
+        continue;
+      }
+      if (totalChamps[i].stars !== totalChamps[i - 1].stars) {
+        ranks[i] = { ...totalChamps[i], rank: i + 1 };
+      } else {
+        ranks[i] = { ...totalChamps[i], rank: i };
+      }
+    }
     let text: string = `The Top Champions for this ${ctx.chat?.type} are: \n`;
-    totalChamps.forEach((champ: IChampion, idx: number) => {
+    console.log(ranks);
+    ranks.forEach((champ: any, idx: number) => {
       console.log(champ.stars);
-      const ranking = getIconsForTopHowlers(idx + 1);
+      const ranking = getIconsForTopHowlers(champ.rank);
       if (idx >= 5) {
         text += `  ${ranking.trim()}   ${mentionHTML(
           champ.name,
           champ.telegramId
-        )} with ${champ.stars[0].stars} 💫\n`;
+        )} with ${champ.stars} 💫\n`;
       } else {
         text += `${ranking.trim()} ${mentionHTML(
           champ.name,
           champ.telegramId
-        )} with ${champ.stars[0].stars} 💫\n`;
+        )} with ${champ.stars} 💫\n`;
       }
     });
     ctx.replyWithHTML(text);

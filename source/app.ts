@@ -77,7 +77,8 @@ bot.command('curr_nominee', (ctx) => commands.getNominee(ctx));
 bot.command(['remove_stars', 'rmstr'], onlyGroup, onlyManager, (ctx) =>
   commands.removeStar(ctx)
 );
-bot.command('tpchamps', (ctx) => commands.topGroupChampions(ctx));
+bot.command('tpchamps', (ctx) => commands.topGroupChampions(ctx, true));
+bot.command('grpchamps', onlyManager, (ctx) => commands.topGroupChampions(ctx));
 bot.command('champstat', (ctx) => commands.checkStar(ctx));
 
 // Candidate Champion Commands
